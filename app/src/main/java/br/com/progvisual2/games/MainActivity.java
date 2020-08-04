@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView banner02;
     ImageView banner03;
     private ArrayList<Banners> urls;
+    private ArrayList<Spotlight> urlsSpot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +33,10 @@ public class MainActivity extends AppCompatActivity {
         banner02 = findViewById(R.id.Banner02);
         banner03 = findViewById(R.id.Banner03);
 
-
         ArrayList<Banners> urls = new ArrayList<>();
+        ArrayList<Spotlight> urlsSpot = new ArrayList<>();
+
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ServiceInterface.api_base)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -41,7 +44,9 @@ public class MainActivity extends AppCompatActivity {
 
         ServiceInterface service = retrofit.create(ServiceInterface.class);
         Call<ArrayList<Listas>> ListasServices = service.listCatalog();
+        Call<ArrayList<ListasSpot>> ListasServices2 = service.listSpot();
 
+        //CONSUMINDO A API PARA O GET BANNERS
         ListasServices.enqueue(new Callback<ArrayList<Listas>>() {
             @Override
             public void onResponse(Call<ArrayList<Listas>> call, Response<ArrayList<Listas>> response) {
@@ -54,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
                     for(Banners a : t){
 
                         Log.i("eduardo",String.format("%s, %s: %s",a.id,a.image,a.url));
+
+
 
                         //ADCIONANDO AS URLS DOS BANNERS EM UM ARRAYLIST PARA DEPOIS INSERIR NOS IMAGEVIEW
                         urls.add(a);
@@ -76,6 +83,33 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        //CONSUMINDO A API PARA O GET SPOTLIGTH
+        ListasServices2.enqueue(new Callback<ArrayList<ListasSpot>>() {
+            @Override
+            public void onResponse(Call<ArrayList<ListasSpot>> call, Response<ArrayList<ListasSpot>> response) {
+                if(!response.isSuccessful()){
+                    Log.i("eduardoSpot","ERRO"+ response.code());
+                }else{
+                    ArrayList<ListasSpot> t = response.body();
+
+                    for(Spotlight a : t){
+
+                        Log.i("eduardoSpot",String.format("%s, %s: %s",a.id,a.image,a.title));
+
+
+
+                        //ADCIONANDO AS URLS DOS BANNERS EM UM ARRAYLIST PARA DEPOIS INSERIR NOS IMAGEVIEW
+                        urlsSpot.add(a);
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<ListasSpot>> call, Throwable t) {
+
+            }
+        });
 
     }
 }

@@ -13,4 +13,7 @@ public interface ServiceInterface {
     @GET("banners")
     Call<ArrayList<Listas>> listCatalog();
 
+    @GET("spotlight")
+    Call<ArrayList<ListasSpot>> listSpot();
+
 }

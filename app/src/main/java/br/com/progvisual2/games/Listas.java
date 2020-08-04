@@ -7,4 +7,5 @@ public class Listas extends Banners {
 
     public ArrayList<Banners> banners;
 
+
 }
