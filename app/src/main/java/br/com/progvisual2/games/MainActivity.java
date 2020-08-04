@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        //INICALIZANDO OS BANNERS
         banner01 = findViewById(R.id.Banner01);
         banner02 = findViewById(R.id.Banner02);
         banner03 = findViewById(R.id.Banner03);
