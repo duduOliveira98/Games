@@ -1,4 +1,4 @@
-package br.com.progvisual2.games;
+package br.com.progvisual2.games.Models;
 
 public class Banners {
 

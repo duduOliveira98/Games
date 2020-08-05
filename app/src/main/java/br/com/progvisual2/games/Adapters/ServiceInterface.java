@@ -1,6 +1,4 @@
-package br.com.progvisual2.games;
-
-import android.provider.CallLog;
+package br.com.progvisual2.games.Adapters;
 
 import java.util.ArrayList;
 

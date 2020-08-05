@@ -1,4 +1,4 @@
-package br.com.progvisual2.games;
+package br.com.progvisual2.games.ViewPager;
 
 import android.content.Context;
 import android.view.View;
@@ -24,7 +24,7 @@ public class SlidePagerAdapter extends PagerAdapter {
     private String[] images_urls;
     private ArrayList<String> urls;
 
-    SlidePagerAdapter(Context context, ArrayList<String> urls){
+    public SlidePagerAdapter(Context context, ArrayList<String> urls){
         this.context = context;
         this.urls = urls;
     }

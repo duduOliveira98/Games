@@ -1,20 +1,23 @@
-package br.com.progvisual2.games;
+package br.com.progvisual2.games.Interfaces;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
-import com.squareup.picasso.Picasso;
-import java.util.ArrayList;
-import java.util.List;
 
-import br.com.progvisual2.games.fragments.PageFragment;
-import br.com.progvisual2.games.fragments.PageFragment_2;
-import br.com.progvisual2.games.fragments.PageFragment_3;
+import java.util.ArrayList;
+
+import br.com.progvisual2.games.Adapters.Listas;
+import br.com.progvisual2.games.Adapters.ListasSpot;
+import br.com.progvisual2.games.Models.Banners;
+import br.com.progvisual2.games.Models.Spotlight;
+import br.com.progvisual2.games.R;
+import br.com.progvisual2.games.Adapters.ServiceInterface;
+import br.com.progvisual2.games.Recycler_Adapter;
+import br.com.progvisual2.games.ViewPager.SlidePagerAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -23,32 +26,23 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView banner01;
-    ImageView banner02;
-    ImageView banner03;
-    ImageView banner04;
+
     private ArrayList<Banners> urls;
     private ArrayList<Spotlight> urlsSpot;
     private ViewPager vpager;
     private PagerAdapter pagerAdapter;
+    private RecyclerView recyclerView;
+    private Recycler_Adapter recycler_adapter;
+    private ArrayList<Spotlight>spotlights;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        recyclerView= findViewById(R.id.recyclerView);
         //PAGER
         ViewPager viewPager = findViewById(R.id.Pager);
-
-
-        View v = getLayoutInflater().inflate(R.layout.banner_01, null);
-        View v2 = getLayoutInflater().inflate(R.layout.banner_02, null);
-        View v3 = getLayoutInflater().inflate(R.layout.banner_03, null);
-        //INICALIZANDO OS BANNERS
-        banner01 = v.findViewById(R.id.B01);
-        banner02 = v2.findViewById(R.id.B02);
-        banner03 = v3.findViewById(R.id.B03);
-
 
         ArrayList<Banners> urls = new ArrayList<>();
         ArrayList<Spotlight> urlsSpot = new ArrayList<>();
@@ -122,6 +116,8 @@ public class MainActivity extends AppCompatActivity {
                         //ADCIONANDO AS URLS DOS BANNERS EM UM ARRAYLIST PARA DEPOIS INSERIR NOS IMAGEVIEW
                         urlsSpot.add(a);
                     }
+                    recycler_adapter.notifyDataSetChanged();
+
 
                 }
             }
@@ -132,5 +128,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
+        recycler_adapter = new Recycler_Adapter(urlsSpot,this);
+        recyclerView.setAdapter(recycler_adapter);
+
+
+
     }
+
+
+
 }
