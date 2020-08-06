@@ -36,12 +36,12 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Banners> urls;
     private ArrayList<Spotlight> urlsSpot;
-    List<Spotlight> spots = new ArrayList<Spotlight>();
+
     private ViewPager vpager;
     private PagerAdapter pagerAdapter;
     private RecyclerView recyclerView;
     private Recycler_Adapter recycler_adapter;
-    private ArrayList<Spotlight>spotlights;
+    private ArrayList<Spotlight> spotlights;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList<Banners> urls = new ArrayList<>();
         ArrayList<Spotlight> urlsSpot = new ArrayList<>();
+        List<Spotlight> spots = new ArrayList<>();
 
 
         //CHAMANDO RETROFIT
@@ -154,10 +155,12 @@ public class MainActivity extends AppCompatActivity {
 
                                 if(spots != null){
                                     Spotlight spotlight = spots.get(position);
+                                    Log.i("eduardoSpot",String.format("%s",spots.get(position)));
                                     //PASSANDO OS DADOS DO CARDVIEW PARA TELA ABRE CARDVIEW
                                     Intent intent = new Intent(MainActivity.this, Spot_Info.class);
                                     intent.putExtra("spots", (Serializable) spots);
                                     startActivity(intent);
+
                                 }else{
 
                                     Toast.makeText(MainActivity.this, "Não foi possivel visualizar esse Jogo", Toast.LENGTH_SHORT).show();

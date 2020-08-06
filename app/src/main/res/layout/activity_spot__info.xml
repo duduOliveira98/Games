@@ -4,20 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:background="@color/Black"
     android:layout_height="match_parent"
     tools:context=".Interfaces.Spot_Info">
 
     <ImageView
         android:id="@+id/imCardView"
         android:layout_width="match_parent"
-        android:layout_height="171dp"
+        android:layout_height="243dp"
         tools:layout_editor_absoluteX="128dp"
         tools:layout_editor_absoluteY="45dp"
         tools:src="@tools:sample/avatars" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/azulclaro">
 
         <TextView
             android:id="@+id/txTitulo"
@@ -25,10 +27,43 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:textSize="15sp"
-            android:layout_marginTop="10dp"
+            android:textColor="@color/branco"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
             android:text="LEAGUE OF LEGENDS"
             />
 
+        <TextView
+            android:id="@+id/nota"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txTitulo"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/branco"
+            android:text="4.7"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_action_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:background="@color/branco"
+            android:backgroundTint="@color/branco"
+            android:layout_alignRight="@+id/txTitulo"
+            app:srcCompat="@drawable/iccarrinho" />
+
+        <RatingBar
+            android:id="@+id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/nota"
+            android:layout_alignLeft="@+id/floating_action_button"
+            android:numStars="5"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/txTitulo"
+            android:saveEnabled="true"
+            android:stepSize="0.1"
+            style="?android:attr/ratingBarStyleIndicator"/>
 
     </RelativeLayout>
 
