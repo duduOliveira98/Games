@@ -3,36 +3,39 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="8dp">
+    android:layout_height="wrap_content"
+    android:background="@color/Black"
+    app:cardBackgroundColor="@color/Black"
+    android:layout_margin="5dp">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="122dp"
+        android:layout_width="377dp"
+        android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:background="@color/Black"
         android:orientation="horizontal"
         android:padding="8dp">
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="148dp"
-            android:layout_height="98dp"
+            android:layout_width="138dp"
+            android:layout_height="72dp"
             android:scaleType="centerInside"
             app:srcCompat="@drawable/iccarrinho" />
 
         <RelativeLayout
-            android:layout_width="202dp"
-            android:layout_height="92dp"
-            android:layout_margin="8dp"
+            android:layout_width="203dp"
+            android:background="@color/Black"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/titulo1"
-                android:layout_width="187dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
                 android:text="League of Legends "
-                android:textColor="@color/Black"
+                android:textColor="@color/branco"
                 android:textSize="12sp" />
 
 
@@ -44,6 +47,7 @@
                 android:text="Nitendo"
                 android:textSize="10sp"
                 android:textStyle="bold"
+                android:textColor="@color/branco"
                 tools:layout_editor_absoluteY="23dp" />
 
             <TextView
@@ -53,6 +57,7 @@
                 android:layout_below="@id/plataforma1"
                 android:text="TextView"
                 android:textSize="12sp"
+                android:textColor="@color/branco"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="39dp" />
@@ -64,13 +69,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/desconto1"
                 android:text="TextView"
+                android:textColor="@color/azul"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:textColor="@color/azul"
                 tools:layout_editor_absoluteX="64dp"
                 tools:layout_editor_absoluteY="58dp" />
-
-
 
 
         </RelativeLayout>

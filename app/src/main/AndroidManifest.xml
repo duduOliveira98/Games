@@ -11,8 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Recycler_Adapter"></activity>
-        <activity android:name=".Divisor" />
+        <activity android:name=".Interfaces.Spot_Info"></activity>
+        <activity android:name=".Interfaces.Recycler_Adapter" />
+        <activity android:name=".Interfaces.Divisor" />
         <activity
             android:name=".Adapter_jogos"
             android:label="@string/title_activity_adapter_jogos"

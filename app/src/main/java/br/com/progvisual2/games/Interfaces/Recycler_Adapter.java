@@ -1,4 +1,4 @@
-package br.com.progvisual2.games;
+package br.com.progvisual2.games.Interfaces;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,9 +13,9 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import br.com.progvisual2.games.Models.Spotlight;
+import br.com.progvisual2.games.R;
 
 public class Recycler_Adapter extends RecyclerView.Adapter<Recycler_Adapter.MyviewHolder> {
 

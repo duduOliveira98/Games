@@ -5,18 +5,25 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import br.com.progvisual2.games.Adapters.Listas;
 import br.com.progvisual2.games.Adapters.ListasSpot;
+import br.com.progvisual2.games.Adapters.RecyclerItemClickListener;
 import br.com.progvisual2.games.Models.Banners;
 import br.com.progvisual2.games.Models.Spotlight;
 import br.com.progvisual2.games.R;
 import br.com.progvisual2.games.Adapters.ServiceInterface;
-import br.com.progvisual2.games.Recycler_Adapter;
 import br.com.progvisual2.games.ViewPager.SlidePagerAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Banners> urls;
     private ArrayList<Spotlight> urlsSpot;
+    List<Spotlight> spots = new ArrayList<Spotlight>();
     private ViewPager vpager;
     private PagerAdapter pagerAdapter;
     private RecyclerView recyclerView;
@@ -48,14 +56,15 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Spotlight> urlsSpot = new ArrayList<>();
 
 
+        //CHAMANDO RETROFIT
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ServiceInterface.api_base)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
         ServiceInterface service = retrofit.create(ServiceInterface.class);
         Call<ArrayList<Listas>> ListasServices = service.listCatalog();
         Call<ArrayList<ListasSpot>> ListasServices2 = service.listSpot();
+
 
         //CONSUMINDO A API PARA O GET BANNERS
         ListasServices.enqueue(new Callback<ArrayList<Listas>>() {
@@ -74,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
                         //ADCIONANDO AS URLS DOS BANNERS EM UM ARRAYLIST PARA DEPOIS INSERIR NOS IMAGEVIEW
                         urls.add(a);
                     }
-
 
                     //CARREGANDO OS BANNER NA ACTIVITY COM O PICASSO
                         Banners b1 = urls.get(0);
@@ -115,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
                         //ADCIONANDO AS URLS DOS BANNERS EM UM ARRAYLIST PARA DEPOIS INSERIR NOS IMAGEVIEW
                         urlsSpot.add(a);
+                        spots.add(a);
                     }
                     recycler_adapter.notifyDataSetChanged();
 
@@ -128,11 +137,47 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        //INFLANDO O ADAPTER RV
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
         recycler_adapter = new Recycler_Adapter(urlsSpot,this);
         recyclerView.setAdapter(recycler_adapter);
+
+        //ADC EVENTO DE CLICK NO RV
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(
+                        this,
+                        recyclerView,
+                        new RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+
+                                if(spots != null){
+                                    Spotlight spotlight = spots.get(position);
+                                    //PASSANDO OS DADOS DO CARDVIEW PARA TELA ABRE CARDVIEW
+                                    Intent intent = new Intent(MainActivity.this, Spot_Info.class);
+                                    intent.putExtra("spots", (Serializable) spots);
+                                    startActivity(intent);
+                                }else{
+
+                                    Toast.makeText(MainActivity.this, "Não foi possivel visualizar esse Jogo", Toast.LENGTH_SHORT).show();
+
+                                }
+
+                            }
+
+                            @Override
+                            public void onLongItemClick(View view, int position) {
+
+                            }
+
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                            }
+                        }
+                )
+        );
 
 
 

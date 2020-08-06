@@ -1,6 +1,8 @@
 package br.com.progvisual2.games.Models;
 
-public class Banners {
+import java.io.Serializable;
+
+public class Banners implements Serializable {
 
     public String id;
     public String image;

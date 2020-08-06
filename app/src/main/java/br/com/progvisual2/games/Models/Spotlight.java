@@ -2,7 +2,9 @@ package br.com.progvisual2.games.Models;
 
 import android.view.View;
 
-public class Spotlight {
+import java.io.Serializable;
+
+public class Spotlight implements Serializable {
 
     public String id;
     public String title;
@@ -16,8 +18,5 @@ public class Spotlight {
     public String reviews;
 
 
-
-    public void title() {
-    }
 }
 

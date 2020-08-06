@@ -1,8 +1,10 @@
-package br.com.progvisual2.games;
+package br.com.progvisual2.games.Interfaces;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import br.com.progvisual2.games.R;
 
 public class Divisor extends AppCompatActivity {
 
